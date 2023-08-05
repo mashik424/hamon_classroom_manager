@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../providers/students_notifier.dart';
+import '../widgets/name_and_value.dart';
 
 class StudentScreen extends ConsumerStatefulWidget {
   const StudentScreen({
@@ -48,43 +49,17 @@ class _StudentScreenState extends ConsumerState<StudentScreen> {
               vertical: 24.0,
               horizontal: 16.0,
             ),
-            child: Center(
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 3,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Age",
-                          style: Theme.of(context).textTheme.headlineSmall,
-                        ),
-                        Text(
-                          "Email",
-                          style: Theme.of(context).textTheme.headlineSmall,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    flex: 7,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          " : ${snapshot.data!.age}",
-                          style: Theme.of(context).textTheme.headlineSmall,
-                        ),
-                        Text(
-                          " : ${snapshot.data!.email}",
-                          style: Theme.of(context).textTheme.headlineSmall,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+            child: Column(
+              children: [
+                NameAndValue(
+                  name: "Age",
+                  value: snapshot.data!.age.toString(),
+                ),
+                NameAndValue(
+                  name: "Email",
+                  value: snapshot.data!.email,
+                ),
+              ],
             ),
           );
         },

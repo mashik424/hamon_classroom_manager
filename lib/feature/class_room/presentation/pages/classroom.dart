@@ -9,10 +9,10 @@ import 'package:classroom_manager/feature/class_room/domain/params/create_regist
 
 import '../providers/classrooms_notifier.dart';
 import '../providers/registrations_notifier.dart';
-import '../providers/students_notifier.dart';
 import '../providers/subjects_notifier.dart';
-import '../widgets/student_item.dart';
-import '../widgets/subject_item.dart';
+import '../widgets/name_and_value.dart';
+import '../widgets/select_student_bs.dart';
+import '../widgets/select_subject_bs.dart';
 
 class ClassroomScreen extends ConsumerStatefulWidget {
   const ClassroomScreen({
@@ -278,90 +278,4 @@ class _ClassroomScreenState extends ConsumerState<ClassroomScreen> {
   }
 }
 
-class NameAndValue extends StatelessWidget {
-  const NameAndValue({
-    super.key,
-    required this.name,
-    this.value = '',
-    this.valueWidget,
-  });
 
-  final String name;
-  final String value;
-  final Widget? valueWidget;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          flex: 3,
-          child: Text(
-            name,
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-        ),
-        Expanded(
-          flex: 7,
-          child: valueWidget ??
-              Text(
-                " : $value",
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-        ),
-      ],
-    );
-  }
-}
-
-class SelectSubjectBS extends ConsumerWidget {
-  const SelectSubjectBS({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ref.read(subjectsNotifier);
-    return DraggableScrollableSheet(
-      expand: false,
-      maxChildSize: 0.8,
-      initialChildSize: 0.8,
-      builder: (context, scrollController) => ListView.separated(
-        padding: const EdgeInsets.symmetric(
-          vertical: 24.0,
-          horizontal: 26.0,
-        ),
-        itemCount: controller.subjects.length,
-        itemBuilder: (context, index) => SubjectItem(
-          subject: controller.subjects[index],
-          onTap: () => Navigator.of(context).pop(controller.subjects[index]),
-        ),
-        separatorBuilder: (context, index) => const SizedBox(height: 10),
-      ),
-    );
-  }
-}
-
-class SelectStudentBS extends ConsumerWidget {
-  const SelectStudentBS({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ref.read(studentsNotifier);
-    return DraggableScrollableSheet(
-      expand: false,
-      maxChildSize: 0.8,
-      initialChildSize: 0.8,
-      builder: (context, scrollController) => ListView.separated(
-        padding: const EdgeInsets.symmetric(
-          vertical: 24.0,
-          horizontal: 26.0,
-        ),
-        itemCount: controller.students.length,
-        itemBuilder: (context, index) => StudentItem(
-          student: controller.students[index],
-          onTap: () => Navigator.of(context).pop(controller.students[index]),
-        ),
-        separatorBuilder: (context, index) => const SizedBox(height: 10),
-      ),
-    );
-  }
-}

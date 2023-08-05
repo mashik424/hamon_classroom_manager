@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:classroom_manager/feature/class_room/data/models/subject.dart';
 
 import '../providers/subjects_notifier.dart';
+import '../widgets/name_and_value.dart';
 
 class SubjectScreen extends ConsumerWidget {
   const SubjectScreen({
@@ -44,43 +45,17 @@ class SubjectScreen extends ConsumerWidget {
               vertical: 24.0,
               horizontal: 16.0,
             ),
-            child: Center(
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 3,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Teacher",
-                          style: Theme.of(context).textTheme.headlineSmall,
-                        ),
-                        Text(
-                          "Credits",
-                          style: Theme.of(context).textTheme.headlineSmall,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    flex: 7,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          " : ${snapshot.data!.teacher}",
-                          style: Theme.of(context).textTheme.headlineSmall,
-                        ),
-                        Text(
-                          " : ${snapshot.data!.credits.toString()}",
-                          style: Theme.of(context).textTheme.headlineSmall,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+            child: Column(
+              children: [
+                NameAndValue(
+                  name: "Teacher",
+                  value: snapshot.data!.teacher,
+                ),
+                NameAndValue(
+                  name: "Credits",
+                  value: snapshot.data!.credits.toString(),
+                ),
+              ],
             ),
           );
         },
