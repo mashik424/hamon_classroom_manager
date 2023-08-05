@@ -48,7 +48,7 @@ class ClassRoomRepositoryImpl implements ClassRoomRepository {
   @override
   Future<DataState<dynamic>> deleteRegistration(int id) async {
     try {
-      final response = await _apiService.deleteRegistration(id);
+      final response = await _apiService.deleteRegistration(id: id);
       return DataSuccess(response);
     } catch (e) {
       return DataError(AppException(e));

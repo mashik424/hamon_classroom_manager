@@ -1,0 +1,1 @@
+enum NotifierFamily { list, detailed }

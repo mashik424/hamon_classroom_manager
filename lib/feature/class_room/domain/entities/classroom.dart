@@ -6,7 +6,7 @@ class ClassroomEntity {
   final String layout;
   final String name;
   final int size;
-  final String subject;
+  final int? subject;
 
   const ClassroomEntity({
     required this.id,

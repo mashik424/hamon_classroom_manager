@@ -13,6 +13,7 @@ class _ClassroomApiService implements ClassroomApiService {
     this._dio, {
     this.baseUrl,
   }) {
+    _dio.interceptors.add(PrettyDioLogger());
     baseUrl ??= 'http://nibrahim.pythonanywhere.com';
   }
 
@@ -285,24 +286,31 @@ class _ClassroomApiService implements ClassroomApiService {
 
   @override
   Future<dynamic> createRegistration({
+    String apiKey = '3990C',
     required int student,
     required int subject,
   }) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'student': student,
-      r'subject': subject,
-    };
+    final queryParameters = <String, dynamic>{r'api_key': apiKey};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    final _data = FormData();
+    _data.fields.add(MapEntry(
+      'student',
+      student.toString(),
+    ));
+    _data.fields.add(MapEntry(
+      'subject',
+      subject.toString(),
+    ));
     final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
+      contentType: 'multipart/form-data',
     )
         .compose(
           _dio.options,
-          '/registration',
+          '/registration/',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -316,9 +324,12 @@ class _ClassroomApiService implements ClassroomApiService {
   }
 
   @override
-  Future<dynamic> deleteRegistration(int id) async {
+  Future<dynamic> deleteRegistration({
+    String apiKey = '3990C',
+    required int id,
+  }) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'api_key': apiKey};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch(_setStreamType<dynamic>(Options(

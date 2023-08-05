@@ -9,6 +9,11 @@ ThemeData theme = ThemeData.from(
   ),
   useMaterial3: true,
   textTheme: textTheme,
+).copyWith(
+  appBarTheme: const AppBarTheme(
+    elevation: 0.0,
+    centerTitle: true,
+  ),
 );
 
 ThemeData darkTheme = ThemeData.from(
@@ -18,4 +23,9 @@ ThemeData darkTheme = ThemeData.from(
   ),
   useMaterial3: true,
   textTheme: textTheme,
+).copyWith(
+  appBarTheme: const AppBarTheme(
+    elevation: 0.0,
+    centerTitle: true,
+  ),
 );

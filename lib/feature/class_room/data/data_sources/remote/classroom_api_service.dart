@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import 'package:classroom_manager/core/constants/constants.dart';
 
@@ -69,14 +70,17 @@ abstract class ClassroomApiService {
     @Path('id') required int id,
   });
 
-  @POST('/registration')
+  @POST('/registration/')
+  @MultiPart()
   Future<dynamic> createRegistration({
-    @Query('student') required int student,
-    @Query('subject') required int subject,
+    @Query('api_key') String apiKey = '3990C',
+    @Part(name: 'student') required int student,
+    @Part(name: 'subject') required int subject,
   });
 
   @DELETE('/registration/{id}')
-  Future<dynamic> deleteRegistration(
-    @Path('id') int id,
-  );
+  Future<dynamic> deleteRegistration({
+    @Query('api_key') String apiKey = '3990C',
+    @Path('id')required int id,
+  });
 }

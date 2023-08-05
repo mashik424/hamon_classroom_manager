@@ -22,7 +22,7 @@ class ClassroomModel extends ClassroomEntity {
         layout: json['layout'] as String,
         name: json['name'] as String,
         size: json['size'] as int,
-        subject: json['subject'] as String,
+        subject: json['subject'] is int ? json['subject'] as int : null,
       );
 
   Map<String, dynamic> toJson() => {

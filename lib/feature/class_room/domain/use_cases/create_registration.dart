@@ -4,9 +4,9 @@ import 'package:classroom_manager/core/usecases/usercase.dart';
 import '../params/create_registration.dart';
 import '../repository/clasroom_repository.dart';
 
-class AllocateClassroomUseCase
+class CreateRegistrationUseCase
     implements UseCase<DataState<dynamic>, CreateRegistrationParams> {
-  AllocateClassroomUseCase(this._repository);
+  CreateRegistrationUseCase(this._repository);
   final ClassRoomRepository _repository;
 
   @override
