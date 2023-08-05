@@ -13,7 +13,6 @@ class _ClassroomApiService implements ClassroomApiService {
     this._dio, {
     this.baseUrl,
   }) {
-    _dio.interceptors.add(PrettyDioLogger());
     baseUrl ??= 'http://nibrahim.pythonanywhere.com';
   }
 
